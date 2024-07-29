@@ -34,7 +34,7 @@ jobs:
       - run: npm run build --if-present
 
       - name: Cypress run
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v6
         
       - name: starting the test server
         run: npm run start:test
