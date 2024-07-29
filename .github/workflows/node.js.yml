@@ -32,12 +32,14 @@ jobs:
         run: npm install
         
       - run: npm run build --if-present
-
-      - name: starting the test server
-        run: npm run start:test
         
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          wait-on: http://localhost:3030
+
+      - name: starting the test server
+        run: npm run start:test
         
       - name: run end to end tests
         run: npm run test
