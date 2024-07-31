@@ -63,6 +63,6 @@ jobs:
           aws-region: 'eu-west-2'
 
       - name: Sync S3 bucket
-        run: aws s3 sync ./public s3://${{ secrets.AWS_S3_BUCKET }} --acl public-read --follow-symlinks --delete --exclude '.git*/*'
+        run: aws s3 sync ./public s3://${{ secrets.AWS_S3_BUCKET }} --follow-symlinks --delete --exclude '.git*/*'
           
 
