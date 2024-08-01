@@ -1,0 +1,70 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+        
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.11.0
+        with:
+          mongodb-version: '7.0'
+      
+      - name: install dependencies
+        run: npm install
+        
+      - run: npm run build --if-present
+
+      - name: starting the test server
+        run: npm run start:test &
+      
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          wait-on: http://localhost:3030
+        
+      - name: run end to end tests
+        run: npm run test
+          
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'eu-west-2'
+
+      - name: Zip the application files
+        run: zip -r md-acebook.zip .
+        
+      - name: Upload to S3
+        run: aws s3 cp md-acebook.zip s3://acebook-md-bucket/md-acebook.zip
+
+      - name: Deploy to CodeDeploy
+        run: |
+          # aws deploy create-deployment \
+          #   --application-name acebook-md-application \
+          #   --deployment-group-name acebook-md-deployment-group \
+          #   --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=md-acebook.zip,bundleType=zip \
+          #   --region eu-west-2
+            aws deploy create-deployment \
+              --application-name acebook-md-application \
+              --deployment-group-name acebook-md-deployment-group \
+              --s3-location bucket=acebook-md-bucket,bundleType=zip,key=md-acebook.zip
