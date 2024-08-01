@@ -62,8 +62,12 @@ jobs:
 
       - name: Deploy to CodeDeploy
         run: |
-          aws deploy create-deployment \
-            --application-name acebook-md-application \
-            --deployment-group-name acebook-md-deployment-group \
-            --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=md-acebook.zip,bundleType=zip \
-            --region eu-west-2
+          # aws deploy create-deployment \
+          #   --application-name acebook-md-application \
+          #   --deployment-group-name acebook-md-deployment-group \
+          #   --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},key=md-acebook.zip,bundleType=zip \
+          #   --region eu-west-2
+            aws deploy create-deployment \
+              --application-name acebook-md-application \
+              --deployment-group-name acebook-md-deployment-group \
+              --s3-location bucket=acebook-md-bucket,bundleType=zip,key=md-acebook.zip
