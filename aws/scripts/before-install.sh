@@ -2,6 +2,8 @@
 
 set -xe
 
-# unzip bundle 
+# Stop the existing application
+systemctl stop myapp || true
 
-sudo unzip tmp/md-acebook -d /tmp/md-acebook
+# Clean up old files
+rm -rf /var/www/myapp/*
