@@ -2,4 +2,6 @@
 set -xe
 
 # Start the application
-systemctl start myapp
+cd /var/www/myapp
+
+sudo npm run start
