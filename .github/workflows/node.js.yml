@@ -67,4 +67,5 @@ jobs:
             aws deploy create-deployment \
               --application-name acebook-md-application \
               --deployment-group-name acebook-md-deployment-group \
+              --ignore-application-stop-failures \
               --s3-location bucket=acebook-md-bucket,bundleType=zip,key=md-acebook.zip
