@@ -6,3 +6,5 @@ systemctl stop myapp || true
 
 # Clean up old files
 rm -rf /var/www/myapp/*
+
+npm install nodemon
