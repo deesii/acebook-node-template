@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -xe
 
 # Stop the existing application
