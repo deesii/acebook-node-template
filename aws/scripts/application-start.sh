@@ -8,4 +8,4 @@ cd /var/www/myapp
 # Start the application
 npm run start &
 
-./validate-service.sh
+/var/www/myapp/aws/scripts/validate-service.sh
