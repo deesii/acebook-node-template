@@ -11,5 +11,3 @@ pm2 save
 
 echo "Deployment steps complete. Background processes are running."
 
-# Exit the script
-exit 0
