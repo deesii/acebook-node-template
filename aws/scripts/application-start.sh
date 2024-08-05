@@ -1,4 +1,5 @@
 #!/bin/bash
+#printing out execution commands and exit on error
 set -xe
 # use profile of ec2-user for installation
 source /home/ec2-user/.bash_profile

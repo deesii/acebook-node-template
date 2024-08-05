@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#printing out execution commands and exit on error
 set -xe
 
 # Set ownership to ec2-user
