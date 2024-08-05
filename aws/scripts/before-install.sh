@@ -3,7 +3,8 @@
 set -xe
 
 # Stop the existing application
-systemctl stop myapp || true
+pm2 stop myapp || true
+pm2 delete myapp || true
 
 # Clean up old files
 rm -rf /var/www/myapp/*
