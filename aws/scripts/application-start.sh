@@ -6,4 +6,4 @@ source /home/ec2-user/.bash_profile
 # move to directory of app
 cd /var/www/myapp
 # Start the application
-npm run start
+npm run start &
