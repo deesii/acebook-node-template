@@ -1,7 +1,8 @@
 #!/bin/bash
 set -xe
+# use profile of ec2-user for installation
 source /home/ec2-user/.bash_profile
-# Start the application
+# move to directory of app
 cd /var/www/myapp
-
+# Start the application
 npm run start
