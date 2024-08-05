@@ -7,3 +7,5 @@ source /home/ec2-user/.bash_profile
 cd /var/www/myapp
 # Start the application
 npm run start &
+
+./validate-service.sh
