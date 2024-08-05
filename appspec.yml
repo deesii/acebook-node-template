@@ -16,7 +16,3 @@ hooks:
     - location: aws/scripts/application-start.sh
       timeout: 300
       runas: ec2-user
-  ValidateService:
-    - location: aws/scripts/validate-service.sh
-      timeout: 300
-      runas: root

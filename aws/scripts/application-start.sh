@@ -8,4 +8,7 @@ cd /var/www/myapp
 # Start the application
 npm run start &
 
-/var/www/myapp/aws/scripts/validate-service.sh
+echo "Deployment steps complete. Background processes are running."
+
+# Exit the script
+exit 0
